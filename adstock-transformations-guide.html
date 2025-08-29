@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adstock Transformations Guide - Accurate Edition</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-top: 10px;
+        }
+        
+        .intro {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .analogy-box {
+            background: #e8f4fd;
+            border-left: 4px solid #2196F3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .transformation-section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .transformation-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin: 0;
+            font-size: 1.8em;
+        }
+        
+        .tag {
+            background: #f0f0f0;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 30px 0;
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .example-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .formula-box {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .key-point {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-box {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .parameters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .param-item {
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .param-name {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .param-value {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Adstock Transformations: The Complete Guide</h1>
+        <div class="subtitle">Understanding How Marketing Effects Carry Over Time</div>
+    </div>
+    
+    <div class="intro">
+        <h2 style="color: #333;">What is Adstock?</h2>
+        <p><strong>Adstock</strong> (also called carryover or decay) models how advertising effects persist over time after the initial exposure. When you see an ad today, you might not buy immediately, but the ad's influence carries forward into future periods.</p>
+        
+        <div class="analogy-box">
+            <strong>🎯 Think of it like this:</strong> It's like the echo in a canyon. You shout (run an ad), and the sound bounces around getting quieter over time. Different canyons (channels) have different echo patterns - some die quickly, others reverberate for a while.
+        </div>
+        
+        <div class="warning-box">
+            <strong>⚠️ Important Distinction:</strong> These adstock transformations model the DECAY of ad effects over time. They all eventually go to zero. This is different from saturation curves (like Hill or Michaelis-Menten) which model diminishing returns as spend increases.
+        </div>
+    </div>
+
+    <!-- Geometric Adstock -->
+    <div class="transformation-section">
+        <div class="transformation-header">
+            <h2>1. Geometric Adstock</h2>
+            <span class="tag">Fixed Decay Rate</span>
+        </div>
+        
+        <p><strong>Core Concept:</strong> Each period, the effect decays by a fixed percentage. Simple exponential decay - like radioactive decay or a ball bouncing lower each time.</p>
+        
+        <div class="formula-box">
+            Adstock_t = Spend_t + β × Adstock_t-1
+            <br>Where β (beta) is the retention rate (0 to 1)
+        </div>
+        
+        <div class="parameters-grid">
+            <div class="param-item">
+                <div class="param-name">β (Beta)</div>
+                <div class="param-value">Retention rate<br>0.3 = Fast decay<br>0.8 = Slow decay</div>
+            </div>
+        </div>
+        
+        <div class="example-box">
+            <strong>📱 Real Example - Facebook Ads:</strong><br>
+            You spend $1,000 on Monday with β = 0.3 (typical for social):
+            <ul>
+                <li>Monday: $1,000 effect (100%)</li>
+                <li>Tuesday: $300 effect (30% carries over)</li>
+                <li>Wednesday: $90 effect (30% of Tuesday)</li>
+                <li>Thursday: $27 effect (30% of Wednesday)</li>
+                <li>By end of week: Nearly zero</li>
+            </ul>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="geometricChart"></canvas>
+        </div>
+        
+        <div class="key-point">
+            <strong>✅ When to use Geometric:</strong>
+            <ul>
+                <li><strong>Digital/Social ads</strong> - Quick action, fast decay (β = 0.1-0.4)</li>
+                <li><strong>Email campaigns</strong> - Very fast decay (β = 0.0-0.2)</li>
+                <li><strong>Display ads</strong> - Moderate decay (β = 0.3-0.5)</li>
+                <li><strong>Search ads</strong> - Almost no carryover (β = 0.0-0.1)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Delayed Geometric -->
+    <div class="transformation-section">
+        <div class="transformation-header">
+            <h2>2. Delayed Geometric Adstock</h2>
+            <span class="tag">Peak Delay + Decay</span>
+        </div>
+        
+        <p><strong>Core Concept:</strong> Combines a delay (theta) before peak effect with geometric decay. It's like geometric but with a "warm-up" period where effects build before decaying.</p>
+        
+        <div class="formula-box">
+            Adstock uses convolution with weights that peak at θ (theta) periods
+            <br>Then decay geometrically with rate β
+        </div>
+        
+        <div class="parameters-grid">
+            <div class="param-item">
+                <div class="param-name">θ (Theta)</div>
+                <div class="param-value">Delay to peak<br>2 = Peak at day 2<br>5 = Peak at day 5</div>
+            </div>
+            <div class="param-item">
+                <div class="param-name">β (Beta)</div>
+                <div class="param-value">Decay rate after peak<br>Same as geometric</div>
+            </div>
+        </div>
+        
+        <div class="example-box">
+            <strong>🎙️ Real Example - Podcast Sponsorship:</strong><br>
+            You sponsor a podcast released Monday (θ = 3, β = 0.6):
+            <ul>
+                <li>Monday: 20% effect (few listen immediately)</li>
+                <li>Tuesday: 60% effect (more downloads)</li>
+                <li>Wednesday: 90% effect (word of mouth peaks)</li>
+                <li>Thursday: 100% effect (PEAK at day 3)</li>
+                <li>Friday: 60% effect (decay begins)</li>
+                <li>Next Monday: 22% effect (continued decay)</li>
+            </ul>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="delayedGeometricChart"></canvas>
+        </div>
+        
+        <div class="key-point">
+            <strong>✅ When to use Delayed Geometric:</strong>
+            <ul>
+                <li><strong>Podcasts</strong> - People listen throughout the week (θ = 3-5)</li>
+                <li><strong>Content marketing</strong> - Takes time to spread (θ = 2-4)</li>
+                <li><strong>Influencer posts</strong> - Engagement builds over days (θ = 1-3)</li>
+                <li><strong>PR campaigns</strong> - News cycles take time (θ = 2-7)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Weibull CDF -->
+    <div class="transformation-section">
+        <div class="transformation-header">
+            <h2>3. Weibull CDF Adstock</h2>
+            <span class="tag">Flexible Build & Decay</span>
+        </div>
+        
+        <p><strong>Core Concept:</strong> Uses the Weibull cumulative distribution function. Creates an S-shaped build-up that then decays. The shape and scale parameters give you full control over the curve.</p>
+        
+        <div class="warning-box">
+            <strong>📌 Clarification:</strong> Unlike a saturation curve, Weibull CDF adstock DOES decay to zero. It builds up in an S-shape, reaches a peak, then gradually declines. The images show it flattening because they're showing cumulative effect, not the decay.
+        </div>
+        
+        <div class="formula-box">
+            Uses: F(t) = 1 - exp(-(t/λ)^k)
+            <br>Where λ (lambda) = scale, k = shape
+            <br>Then applies decay after reaching peak
+        </div>
+        
+        <div class="parameters-grid">
+            <div class="param-item">
+                <div class="param-name">k (Shape)</div>
+                <div class="param-value">Controls curve shape<br>&lt;1 = Quick rise<br>&gt;1 = Gradual rise</div>
+            </div>
+            <div class="param-item">
+                <div class="param-name">λ (Scale)</div>
+                <div class="param-value">Time to peak<br>Higher = Later peak</div>
+            </div>
+        </div>
+        
+        <div class="example-box">
+            <strong>📺 Real Example - TV Campaign:</strong><br>
+            Major TV campaign with k=2, λ=5:
+            <ul>
+                <li>Week 1: 20% effect (awareness building)</li>
+                <li>Week 2: 50% effect (recognition growing)</li>
+                <li>Week 3: 75% effect (strong recall)</li>
+                <li>Week 4: 85% effect (near saturation)</li>
+                <li>Week 5: 80% effect (decay begins)</li>
+                <li>Week 8: 40% effect (gradual decline)</li>
+                <li>Week 12: 10% effect (mostly faded)</li>
+            </ul>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="weibullCDFChart"></canvas>
+        </div>
+        
+        <div class="key-point">
+            <strong>✅ When to use Weibull CDF:</strong>
+            <ul>
+                <li><strong>TV campaigns</strong> - Gradual awareness build (k=2, λ=7-14)</li>
+                <li><strong>Brand campaigns</strong> - Slow burn effect (k=1.5-2.5)</li>
+                <li><strong>Out-of-home</strong> - Repeated exposure needed (k=2-3)</li>
+                <li>When you need flexible control over rise and decay patterns</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Weibull PDF -->
+    <div class="transformation-section">
+        <div class="transformation-header">
+            <h2>4. Weibull PDF Adstock</h2>
+            <span class="tag">Bell Curve Pattern</span>
+        </div>
+        
+        <p><strong>Core Concept:</strong> Uses the Weibull probability density function. Creates a bell-shaped curve - gradual rise to a peak, then symmetric or asymmetric decline. Most flexible for modeling specific peak timing.</p>
+        
+        <div class="formula-box">
+            Uses: f(t) = (k/λ)(t/λ)^(k-1) × exp(-(t/λ)^k)
+            <br>Creates bell curve with peak at specific time
+        </div>
+        
+        <div class="parameters-grid">
+            <div class="param-item">
+                <div class="param-name">k (Shape)</div>
+                <div class="param-value">Curve symmetry<br>1 = Exponential<br>3.6 = Nearly normal</div>
+            </div>
+            <div class="param-item">
+                <div class="param-name">λ (Scale)</div>
+                <div class="param-value">Time to peak<br>Controls when peak occurs</div>
+            </div>
+        </div>
+        
+        <div class="example-box">
+            <strong>🎄 Real Example - Black Friday Campaign:</strong><br>
+            Campaign starting Nov 20 with k=3, λ=4:
+            <ul>
+                <li>Nov 20: 10% effect (initial awareness)</li>
+                <li>Nov 21: 30% effect (building buzz)</li>
+                <li>Nov 22: 60% effect (anticipation grows)</li>
+                <li>Nov 23: 90% effect (day before Black Friday)</li>
+                <li>Nov 24: 100% effect (BLACK FRIDAY PEAK)</li>
+                <li>Nov 25: 85% effect (momentum continues)</li>
+                <li>Nov 26: 60% effect (Cyber Monday)</li>
+                <li>Nov 28: 30% effect (fading out)</li>
+                <li>Dec 1: 5% effect (mostly gone)</li>
+            </ul>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="weibullPDFChart"></canvas>
+        </div>
+        
+        <div class="key-point">
+            <strong>✅ When to use Weibull PDF:</strong>
+            <ul>
+                <li><strong>Event marketing</strong> - Peak around event date (k=2-4)</li>
+                <li><strong>Product launches</strong> - Build to launch day peak (k=2-3)</li>
+                <li><strong>Seasonal campaigns</strong> - Holiday shopping patterns (k=3-4)</li>
+                <li><strong>Movie releases</strong> - Opening weekend focus (k=2-3, λ=2-3)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Detailed Comparison -->
+    <div class="transformation-section">
+        <h2 style="color: #333;">🎯 Which Transformation When? Decision Guide</h2>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Best Choice</th>
+                    <th>Parameters</th>
+                    <th>Why</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Google Search Ads</strong></td>
+                    <td>Geometric</td>
+                    <td>β = 0.0-0.1</td>
+                    <td>Immediate intent, almost no carryover</td>
+                </tr>
+                <tr>
+                    <td><strong>Facebook/Instagram</strong></td>
+                    <td>Geometric</td>
+                    <td>β = 0.2-0.4</td>
+                    <td>Quick action, some brand recall</td>
+                </tr>
+                <tr>
+                    <td><strong>YouTube Pre-roll</strong></td>
+                    <td>Delayed Geometric</td>
+                    <td>θ = 1-2, β = 0.5</td>
+                    <td>Some skip, builds over views</td>
+                </tr>
+                <tr>
+                    <td><strong>Podcast Sponsorship</strong></td>
+                    <td>Delayed Geometric</td>
+                    <td>θ = 3-5, β = 0.6</td>
+                    <td>Listen throughout week</td>
+                </tr>
+                <tr>
+                    <td><strong>TV Campaign</strong></td>
+                    <td>Weibull CDF</td>
+                    <td>k = 2, λ = 10</td>
+                    <td>Gradual awareness build</td>
+                </tr>
+                <tr>
+                    <td><strong>Super Bowl Ad</strong></td>
+                    <td>Weibull PDF</td>
+                    <td>k = 3, λ = 2</td>
+                    <td>Huge spike, then decay</td>
+                </tr>
+                <tr>
+                    <td><strong>Email Newsletter</strong></td>
+                    <td>Geometric</td>
+                    <td>β = 0.0-0.1</td>
+                    <td>Read immediately or deleted</td>
+                </tr>
+                <tr>
+                    <td><strong>Billboard/OOH</strong></td>
+                    <td>Weibull CDF</td>
+                    <td>k = 1.5, λ = 14</td>
+                    <td>Repeated exposure builds</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="intro" style="margin-top: 30px;">
+        <h2 style="color: #333;">🔑 Key Takeaways</h2>
+        <ol>
+            <li><strong>All decay to zero:</strong> These model how effects fade over time, not saturation.</li>
+            <li><strong>Match to behavior:</strong> Choose based on how your audience actually consumes the media.</li>
+            <li><strong>Test parameters:</strong> Use holdout tests to validate your decay assumptions.</li>
+            <li><strong>Combine with saturation:</strong> These handle time decay; add Hill/Michaelis-Menten for diminishing returns.</li>
+            <li><strong>Start simple:</strong> Geometric works for most digital channels. Only add complexity if needed.</li>
+        </ol>
+        
+        <div class="warning-box">
+            <strong>⚠️ Common Mistakes to Avoid:</strong>
+            <ul>
+                <li>Using high β (>0.8) for digital channels - unrealistic carryover</li>
+                <li>Applying TV-like decay to search ads - they have almost no carryover</li>
+                <li>Confusing adstock (time decay) with saturation (spend efficiency)</li>
+                <li>Over-parameterizing - more complex isn't always better</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Geometric Adstock Chart - Showing actual decay
+        const geometricCtx = document.getElementById('geometricChart').getContext('2d');
+        const days = Array.from({length: 20}, (_, i) => `Day ${i + 1}`);
+        
+        // Three different beta values
+        const geometric_beta_low = [100];
+        const geometric_beta_med = [100];
+        const geometric_beta_high = [100];
+        
+        for(let i = 1; i < 20; i++) {
+            geometric_beta_low.push(geometric_beta_low[i-1] * 0.3);
+            geometric_beta_med.push(geometric_beta_med[i-1] * 0.6);
+            geometric_beta_high.push(geometric_beta_high[i-1] * 0.8);
+        }
+        
+        new Chart(geometricCtx, {
+            type: 'line',
+            data: {
+                labels: days,
+                datasets: [{
+                    label: 'β = 0.3 (Fast decay - Social)',
+                    data: geometric_beta_low,
+                    borderColor: '#ff6384',
+                    backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                    tension: 0.4,
+                    fill: false
+                }, {
+                    label: 'β = 0.6 (Medium decay - Display)',
+                    data: geometric_beta_med,
+                    borderColor: '#36a2eb',
+                    backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                    tension: 0.4,
+                    fill: false
+                }, {
+                    label: 'β = 0.8 (Slow decay - TV)',
+                    data: geometric_beta_high,
+                    borderColor: '#4bc0c0',
+                    backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Effect (%)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Geometric Adstock: Different Decay Rates'
+                    }
+                }
+            }
+        });
+
+        // Delayed Geometric Chart
+        const delayedCtx = document.getElementById('delayedGeometricChart').getContext('2d');
+        
+        // Simulate delayed geometric with different theta values
+        const delayed_theta2 = [30, 65, 100, 85, 72, 61, 52, 44, 37, 31, 26, 22, 19, 16, 14, 12, 10, 8, 7, 6];
+        const delayed_theta5 = [10, 25, 45, 70, 90, 100, 90, 81, 73, 66, 59, 53, 48, 43, 39, 35, 31, 28, 25, 23];
+        
+        new Chart(delayedCtx, {
+            type: 'line',
+            data: {
+                labels: days,
+                datasets: [{
+                    label: 'θ = 2 (Peak at Day 3)',
+                    data: delayed_theta2,
+                    borderColor: '#9966ff',
+                    backgroundColor: 'rgba(153, 102, 255, 0.1)',
+                    tension: 0.4,
+                    fill: false
+                }, {
+                    label: 'θ = 5 (Peak at Day 6)',
+                    data: delayed_theta5,
+                    borderColor: '#ff9f40',
+                    backgroundColor: 'rgba(255, 159, 64, 0.1)',
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Effect (%)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Delayed Geometric: Different Peak Delays'
+                    }
+                }
+            }
+        });
+
+        // Weibull CDF Chart - Showing the actual decay pattern
+        const weibullCDFCtx = document.getElementById('weibullCDFChart').getContext('2d');
+        
+        // Simulate Weibull CDF that builds and then decays
+        const weibull_cdf_line1 = [5, 12, 22, 35, 50, 65, 78, 87, 93, 96, 94, 88, 79, 68, 56, 44, 33, 24, 17, 12];
+        const weibull_cdf_line2 = [2, 5, 10, 18, 28, 40, 53, 65, 75, 83, 88, 90, 88, 83, 75, 65, 53, 41, 30, 21];
+        
+        new Chart(weibullCDFCtx, {
+            type: 'line',
+            data: {
+                labels: days,
+                datasets: [{
+                    label: 'Quick Build (k=1.5, λ=5)',
+                    data: weibull_cdf_line1,
+                    borderColor: '#4caf50',
+                    backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                    tension: 0.4,
+                    fill: false
+                }, {
+                    label: 'Gradual Build (k=2.5, λ=8)',
+                    data: weibull_cdf_line2,
+                    borderColor: '#00bcd4',
+                    backgroundColor: 'rgba(0, 188, 212, 0.1)',
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Effect (%)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Weibull CDF: S-Curve Build with Decay'
+                    }
+                }
+            }
+        });
+
+        // Weibull PDF Chart
+        const weibullPDFCtx = document.getElementById('weibullPDFChart').getContext('2d');
+        
+        // Simulate Weibull PDF - bell curves with different peaks
+        const weibull_pdf_early = [20, 45, 70, 85, 95, 100, 92, 80, 65, 48, 35, 24, 16, 10, 6, 4, 2, 1, 1, 0];
+        const weibull_pdf_late = [5, 10, 18, 28, 40, 54, 68, 80, 90, 96, 100, 96, 88, 76, 62, 48, 35, 24, 15, 9];
+        
+        new Chart(weibullPDFCtx, {
+            type: 'line',
+            data: {
+                labels: days,
+                datasets: [{
+                    label: 'Early Peak (k=2, λ=4)',
+                    data: weibull_pdf_early,
+                    borderColor: '#ff9800',
+                    backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                    tension: 0.4,
+                    fill: false
+                }, {
+                    label: 'Late Peak (k=3, λ=8)',
+                    data: weibull_pdf_late,
+                    borderColor: '#e91e63',
+                    backgroundColor: 'rgba(233, 30, 99, 0.1)',
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Effect (%)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Weibull PDF: Bell Curve with Different Peak Timing'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
