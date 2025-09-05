@@ -1,3 +1,4 @@
 plotly==6.2.0
 scipy==1.16.1
 scikit-learn==1.7.1
+seaborn==0.13.2
