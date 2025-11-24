@@ -160,7 +160,7 @@ const TbrGuide = () => {
                 <div className="tw:max-w-6xl tw:mx-auto">
                     <div className="tw:flex tw:items-center tw:gap-3 tw:mb-2">
                         <Calendar className="tw:w-8 tw:h-8 tw:text-indigo-400" />
-                        <p className="tw:text-3xl tw:font-bold">Time-Based Regression (TBR) Simulator</p>
+                        <p className="tw:text-3xl tw:font-bold">Incrementality Algorithms: Time-Based Regression (TBR) Simulator</p>
                     </div>
                     <p className="tw:text-indigo-200 tw:max-w-3xl tw:leading-relaxed">
                         A guide to measuring the impact of TV ads, billboards, and pricing changes using <span className="tw:font-bold">Counterfactuals</span>.
