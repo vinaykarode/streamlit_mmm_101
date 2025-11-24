@@ -5,5 +5,8 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: "/incrementality_experiment_design"
+  base: "/incrementality_experiment_design",
+  build: {
+    outDir: 'tbr-guide'
+  }
 })

@@ -10,11 +10,10 @@ import {
 
 // --- Components ---
 
-
 const MetricCard = ({ title, value, subtitle, status, icon: Icon }) => (
     <div className={`tw:p-6 tw:rounded-xl tw:border tw:transition-all tw:duration-300 tw:bg-white tw:border-slate-200 tw:shadow-sm`}>
         <div className="tw:flex tw:justify-between tw:items-start tw:mb-2">
-            <h3 className="tw:text-sm tw:font-bold tw:uppercase tw:tracking-wider tw:text-slate-500">{title}</h3>
+            <p className="tw:text-sm tw:font-bold tw:uppercase tw:tracking-wider tw:text-slate-500">{title}</p>
             {Icon && <Icon size={20} className="tw:text-indigo-500" />}
         </div>
         <div className={`tw:text-3xl tw:font-bold tw:mb-1 ${
@@ -30,7 +29,7 @@ const AlgoCard = ({ title, acronym, bestFor, difficulty, description }) => (
     <div className="tw:bg-white tw:p-5 tw:rounded-xl tw:border tw:border-slate-200 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow">
         <div className="tw:flex tw:justify-between tw:items-start tw:mb-3">
             <div>
-                <h3 className="tw:font-bold tw:text-slate-900">{title}</h3>
+                <p className="tw:font-bold tw:text-slate-900">{title}</p>
                 <span className="tw:text-xs tw:font-bold tw:bg-slate-100 tw:text-slate-500 tw:px-2 tw:py-1 tw:rounded">{acronym}</span>
             </div>
             <div className={`tw:text-xs tw:font-bold tw:px-2 tw:py-1 tw:rounded ${
@@ -161,7 +160,7 @@ const TbrGuide = () => {
                 <div className="tw:max-w-6xl tw:mx-auto">
                     <div className="tw:flex tw:items-center tw:gap-3 tw:mb-2">
                         <Calendar className="tw:w-8 tw:h-8 tw:text-indigo-400" />
-                        <h1 className="tw:text-3xl tw:font-bold">Time-Based Regression (TBR) Simulator</h1>
+                        <p className="tw:text-3xl tw:font-bold">Incrementality Algorithms: Time-Based Regression (TBR) Simulator</p>
                     </div>
                     <p className="tw:text-indigo-200 tw:max-w-3xl tw:leading-relaxed">
                         A guide to measuring the impact of TV ads, billboards, and pricing changes using <strong>Counterfactuals</strong>.
@@ -200,14 +199,14 @@ const TbrGuide = () => {
                     <div className="tw:animate-in tw:fade-in tw:duration-500 tw:space-y-8">
 
                         <div className="tw:bg-white tw:p-8 tw:rounded-xl tw:shadow-sm tw:border tw:border-slate-200">
-                            <h2 className="tw:text-2xl tw:font-bold tw:text-slate-900 tw:mb-6">Scenario: The Coffee Shop TV Ad</h2>
+                            <p className="tw:text-2xl tw:font-bold tw:text-slate-900 tw:mb-6">Scenario: The Coffee Shop TV Ad</p>
                             <div className="tw:grid md:tw:grid-cols-2 tw:gap-12 tw:items-center">
                                 <div className="tw:space-y-6 tw:text-slate-600 tw:leading-relaxed">
                                     <p>
                                         You own "Java Joy," a local coffee chain. You decide to run a TV Commercial for one month.
                                     </p>
                                     <div className="tw:bg-indigo-50 tw:p-4 tw:rounded-lg tw:border tw:border-indigo-100">
-                                        <h4 className="tw:font-bold tw:text-indigo-900 tw:mb-2">The Problem:</h4>
+                                        <p className="tw:font-bold tw:text-indigo-900 tw:mb-2">The Problem:</p>
                                         <p className="tw:text-sm">
                                             When someone walks in to buy a latte, you don't know if they saw the TV ad. There is no "cookie" or "click ID" on a human being.
                                             <br/><br/>
@@ -216,7 +215,7 @@ const TbrGuide = () => {
                                     </div>
 
                                     <div className="tw:space-y-4">
-                                        <h4 className="tw:font-bold tw:text-slate-900">How TBR solves this:</h4>
+                                        <p className="tw:font-bold tw:text-slate-900">How TBR solves this:</p>
                                         <ul className="tw:space-y-4">
                                             <li className="tw:flex tw:gap-3">
                                                 <div className="tw:bg-slate-100 tw:p-2 tw:rounded-lg tw:text-slate-700 tw:h-fit">1</div>
@@ -246,7 +245,7 @@ const TbrGuide = () => {
                                 </div>
 
                                 <div className="tw:bg-slate-900 tw:text-white tw:p-6 tw:rounded-xl tw:shadow-lg">
-                                    <h3 className="tw:font-bold tw:text-slate-200 tw:mb-6 tw:uppercase tw:text-xs tw:tracking-wider tw:border-b tw:border-slate-700 tw:pb-2">Visualizing the Counterfactual</h3>
+                                    <p className="tw:font-bold tw:text-slate-200 tw:mb-6 tw:uppercase tw:text-xs tw:tracking-wider tw:border-b tw:border-slate-700 tw:pb-2">Visualizing the Counterfactual</p>
 
                                     {/* Visual Diagram */}
                                     <div className="tw:relative tw:h-[200px] tw:flex tw:items-end tw:justify-between tw:gap-2 tw:px-2">
@@ -294,9 +293,9 @@ const TbrGuide = () => {
                             {/* Left: Inputs */}
                             <div className="lg:tw:col-span-4 tw:space-y-6">
                                 <div className="tw:bg-white tw:p-6 tw:rounded-xl tw:shadow-md tw:border tw:border-slate-200">
-                                    <h3 className="tw:text-lg tw:font-bold tw:mb-4 tw:flex tw:items-center tw:gap-2 tw:text-slate-800">
+                                    <p className="tw:text-lg tw:font-bold tw:mb-4 tw:flex tw:items-center tw:gap-2 tw:text-slate-800">
                                         <Calculator size={20} /> Experiment Controls
-                                    </h3>
+                                    </p>
 
                                     <div className="tw:space-y-6">
                                         {/* True Lift */}
@@ -348,10 +347,10 @@ const TbrGuide = () => {
 
                                 {/* Status Box */}
                                 <div className={`tw:p-4 tw:rounded-xl tw:border ${metrics.confidence === 'High' ? 'tw:bg-emerald-50 tw:border-emerald-200 tw:text-emerald-800' : 'tw:bg-rose-50 tw:border-rose-200 tw:text-rose-800'}`}>
-                                    <h4 className="tw:font-bold tw:text-sm tw:flex tw:items-center tw:gap-2">
+                                    <p className="tw:font-bold tw:text-sm tw:flex tw:items-center tw:gap-2">
                                         {metrics.confidence === 'High' ? <CheckCircle size={16}/> : <AlertTriangle size={16}/>}
                                         Experiment Reliability: {metrics.confidence}
-                                    </h4>
+                                    </p>
                                     <p className="tw:text-xs tw:mt-1 tw:opacity-80">
                                         {metrics.confidence === 'High'
                                             ? "Model fits historical data well. The calculated lift is trustworthy."
@@ -365,10 +364,10 @@ const TbrGuide = () => {
 
                                 {/* Chart */}
                                 <div className="tw:bg-white tw:p-6 tw:rounded-xl tw:shadow-md tw:border tw:border-slate-200 tw:h-[450px] tw:flex tw:flex-col">
-                                    <h3 className="tw:font-bold tw:text-slate-700 tw:mb-2 tw:flex tw:justify-between tw:items-center">
+                                    <p className="tw:font-bold tw:text-slate-700 tw:mb-2 tw:flex tw:justify-between tw:items-center">
                                         <span>Time Series Analysis</span>
                                         <span className="tw:text-xs tw:bg-slate-100 tw:px-2 tw:py-1 tw:rounded tw:text-slate-500">Days 0-70: Training • Days 71-100: Test</span>
-                                    </h3>
+                                    </p>
                                     <div className="tw:flex-grow">
                                         <ResponsiveContainer width="100%" height="100%">
                                             <ComposedChart data={chartData} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
@@ -440,9 +439,9 @@ const TbrGuide = () => {
 
                         {/* Deep Dive Section (Bottom of Simulator) */}
                         <div className="tw:bg-slate-50 tw:border tw:border-slate-200 tw:rounded-xl tw:p-6">
-                            <h3 className="tw:text-lg tw:font-bold tw:text-slate-800 tw:mb-4 tw:flex tw:items-center tw:gap-2">
+                            <p className="tw:text-lg tw:font-bold tw:text-slate-800 tw:mb-4 tw:flex tw:items-center tw:gap-2">
                                 <Sigma size={20} className="tw:text-indigo-600"/> The Math Under the Hood
-                            </h3>
+                            </p>
                             <div className="tw:grid md:tw:grid-cols-2 tw:gap-8 tw:text-sm">
                                 <div className="tw:space-y-2">
                                     <p className="tw:font-mono tw:bg-white tw:p-3 tw:rounded tw:border tw:border-slate-200 tw:text-slate-600">
@@ -470,9 +469,9 @@ const TbrGuide = () => {
                     <div className="tw:animate-in tw:fade-in tw:duration-500 tw:max-w-5xl tw:mx-auto tw:space-y-10">
 
                         <div className="tw:bg-white tw:p-8 tw:rounded-xl tw:shadow-sm tw:border tw:border-slate-200">
-                            <h2 className="tw:text-2xl tw:font-bold tw:text-slate-900 tw:mb-6 tw:flex tw:items-center tw:gap-2">
+                            <p className="tw:text-2xl tw:font-bold tw:text-slate-900 tw:mb-6 tw:flex tw:items-center tw:gap-2">
                                 <GitCompare className="tw:text-indigo-600"/> Algorithm Battle Royale
-                            </h2>
+                            </p>
                             <p className="tw:text-lg tw:text-slate-600 tw:mb-8">
                                 TBR is just one way to generate a Counterfactual. Here is how it compares to the other heavyweights in causal inference.
                             </p>
@@ -517,7 +516,7 @@ const TbrGuide = () => {
                         </div>
 
                         <div className="tw:bg-indigo-900 tw:text-white tw:p-8 tw:rounded-xl tw:shadow-lg">
-                            <h3 className="tw:text-xl tw:font-bold tw:mb-4">When to use which?</h3>
+                            <p className="tw:text-xl tw:font-bold tw:mb-4">When to use which?</p>
                             <div className="tw:space-y-4 tw:text-indigo-100">
                                 <div className="tw:flex tw:gap-4 tw:items-start">
                                     <CheckCircle className="tw:shrink-0 tw:mt-1 tw:text-emerald-400"/>
