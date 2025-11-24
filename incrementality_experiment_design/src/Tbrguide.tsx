@@ -42,7 +42,7 @@ const AlgoCard = ({ title, acronym, bestFor, difficulty, description }) => (
         </div>
         <p className="tw:text-sm tw:text-slate-600 tw:mb-3">{description}</p>
         <div className="tw:text-xs tw:bg-indigo-50 tw:text-indigo-800 tw:p-2 tw:rounded tw:border tw:border-indigo-100">
-            <strong>Best For:</strong> {bestFor}
+            <p className="tw:font-bold tw:inline">Best For:</p> {bestFor}
         </div>
     </div>
 );
@@ -160,10 +160,10 @@ const TbrGuide = () => {
                 <div className="tw:max-w-6xl tw:mx-auto">
                     <div className="tw:flex tw:items-center tw:gap-3 tw:mb-2">
                         <Calendar className="tw:w-8 tw:h-8 tw:text-indigo-400" />
-                        <p className="tw:text-3xl tw:font-bold">Incrementality Algorithms: Time-Based Regression (TBR) Simulator</p>
+                        <p className="tw:text-3xl tw:font-bold">Time-Based Regression (TBR) Simulator</p>
                     </div>
                     <p className="tw:text-indigo-200 tw:max-w-3xl tw:leading-relaxed">
-                        A guide to measuring the impact of TV ads, billboards, and pricing changes using <strong>Counterfactuals</strong>.
+                        A guide to measuring the impact of TV ads, billboards, and pricing changes using <span className="tw:font-bold">Counterfactuals</span>.
                     </p>
                 </div>
             </header>
@@ -210,7 +210,7 @@ const TbrGuide = () => {
                                         <p className="tw:text-sm">
                                             When someone walks in to buy a latte, you don't know if they saw the TV ad. There is no "cookie" or "click ID" on a human being.
                                             <br/><br/>
-                                            <strong>You cannot A/B test a TV commercial.</strong> Everyone in the city sees it at the same time.
+                                            <span className="tw:font-bold">You cannot A/B test a TV commercial.</span> Everyone in the city sees it at the same time.
                                         </p>
                                     </div>
 
@@ -220,23 +220,23 @@ const TbrGuide = () => {
                                             <li className="tw:flex tw:gap-3">
                                                 <div className="tw:bg-slate-100 tw:p-2 tw:rounded-lg tw:text-slate-700 tw:h-fit">1</div>
                                                 <div>
-                                                    <strong className="tw:text-slate-900">Training (Pre-Test):</strong>
+                                                    <p className="tw:font-bold tw:text-slate-900">Training (Pre-Test):</p>
                                                     <p className="tw:text-sm tw:mt-1">We study your sales from the last year. We learn that "Mondays are slow" and "Cold weather boosts Latte sales."</p>
                                                 </div>
                                             </li>
                                             <li className="tw:flex tw:gap-3">
                                                 <div className="tw:bg-slate-100 tw:p-2 tw:rounded-lg tw:text-slate-700 tw:h-fit">2</div>
                                                 <div>
-                                                    <strong className="tw:text-slate-900">Prediction (Counterfactual):</strong>
+                                                    <p className="tw:font-bold tw:text-slate-900">Prediction (Counterfactual):</p>
                                                     <p className="tw:text-sm tw:mt-1">We ask the model: <em>"Assuming no TV ad existed, how much coffee would we have sold this month?"</em></p>
                                                 </div>
                                             </li>
                                             <li className="tw:flex tw:gap-3">
                                                 <div className="tw:bg-emerald-100 tw:p-2 tw:rounded-lg tw:text-emerald-700 tw:h-fit">3</div>
                                                 <div>
-                                                    <strong className="tw:text-slate-900">Measurement (The Lift):</strong>
+                                                    <p className="tw:font-bold tw:text-slate-900">Measurement (The Lift):</p>
                                                     <p className="tw:text-sm tw:mt-1">
-                                                        Actual Sales (High) - Predicted Sales (Low) = <strong>TV Ad Impact</strong>.
+                                                        Actual Sales (High) - Predicted Sales (Low) = <span className="tw:font-bold">TV Ad Impact</span>.
                                                     </p>
                                                 </div>
                                             </li>
@@ -448,7 +448,7 @@ const TbrGuide = () => {
                                         Y<sub>t</sub> = &alpha; + &beta;<sub>1</sub>Time + &beta;<sub>2</sub>Season + &epsilon;
                                     </p>
                                     <p className="tw:text-slate-600 tw:leading-relaxed">
-                                        <strong>1. Training Phase (Days 0-70):</strong> We fit a regression line to predict Sales (Y) based on Time Trend and Seasonality. This creates our "Model".
+                                        <span className="tw:font-bold">1. Training Phase (Days 0-70):</span> We fit a regression line to predict Sales (Y) based on Time Trend and Seasonality. This creates our "Model".
                                     </p>
                                 </div>
                                 <div className="tw:space-y-2">
@@ -456,7 +456,7 @@ const TbrGuide = () => {
                                         Lift = &sum; (Actual<sub>t</sub> - Predicted<sub>t</sub>)
                                     </p>
                                     <p className="tw:text-slate-600 tw:leading-relaxed">
-                                        <strong>2. Test Phase (Days 71-100):</strong> We use the Model to draw the dashed line (Counterfactual). We subtract that from what actually happened. The remainder is your Lift.
+                                        <span className="tw:font-bold">2. Test Phase (Days 71-100):</span> We use the Model to draw the dashed line (Counterfactual). We subtract that from what actually happened. The remainder is your Lift.
                                     </p>
                                 </div>
                             </div>
@@ -521,15 +521,15 @@ const TbrGuide = () => {
                                 <div className="tw:flex tw:gap-4 tw:items-start">
                                     <CheckCircle className="tw:shrink-0 tw:mt-1 tw:text-emerald-400"/>
                                     <div>
-                                        <strong>Do you have a Control Group (e.g., a region where ads didn't run)?</strong>
-                                        <p className="tw:text-sm tw:opacity-80 tw:mt-1">Yes? Use <strong>Diff-in-Diff</strong> or <strong>Synthetic Control</strong>. They are safer.</p>
+                                        <p className="tw:font-bold">Do you have a Control Group (e.g., a region where ads didn't run)?</p>
+                                        <p className="tw:text-sm tw:opacity-80 tw:mt-1">Yes? Use <span className="tw:font-bold">Diff-in-Diff</span> or <span className="tw:font-bold">Synthetic Control</span>. They are safer.</p>
                                     </div>
                                 </div>
                                 <div className="tw:flex tw:gap-4 tw:items-start">
                                     <CheckCircle className="tw:shrink-0 tw:mt-1 tw:text-emerald-400"/>
                                     <div>
-                                        <strong>Is it a nationwide change (e.g., Superbowl Ad)?</strong>
-                                        <p className="tw:text-sm tw:opacity-80 tw:mt-1">Yes? You have no control group. You MUST use <strong>TBR</strong> or <strong>CausalImpact (BSTS)</strong>.</p>
+                                        <p className="tw:font-bold">Is it a nationwide change (e.g., Superbowl Ad)?</p>
+                                        <p className="tw:text-sm tw:opacity-80 tw:mt-1">Yes? You have no control group. You MUST use <span className="tw:font-bold">TBR</span> or <span className="tw:font-bold">CausalImpact (BSTS)</span>.</p>
                                     </div>
                                 </div>
                             </div>
