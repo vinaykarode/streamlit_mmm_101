@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: "/incrementality_experiment_design",
   build: {
-    outDir: 'tbr-guide'
+    outDir: 'selection-bias-guide'
   }
 })
